@@ -6,13 +6,13 @@
 
 这个改一改就是你的..啊不是，我是说基于框架进行开发(滑稽)
 
-1.定位：针对于简易C++管理系统开发，提供简单的基于easyx的GUI固定渲染和简单的无限层级菜单解决方案
+1. 定位：针对于简易C++管理系统开发，提供简单的基于easyx的GUI固定渲染和简单的无限层级菜单解决方案
 
-2.使用基础：有一定面向对象基础和IMGUI使用经验，或者easyx的使用经验
+2. 使用基础：有一定面向对象基础和IMGUI使用经验，或者easyx的使用经验
 
-3.使用方式:仅在VisualStudio导入yNodeGUIFrameowrk目录下的文件到项目内，并在easyx官网（https://easyx.cn/  ）.安装easyx(仅支持VisualStudio)，在项目设置里设置多字符集的编码！！！
+3. 使用方式:仅在VisualStudio导入yNodeGUIFrameowrk目录下的文件到项目内，并在easyx官网（https://easyx.cn/  ）.安装easyx(仅支持VisualStudio)，在项目设置里设置多字符集的编码！！！
 
-4.打包方式: 将VS切换到Release分支，在项目Release设置内，代码生成选择MT，即可脱离C++和easyx环境运行,如果在过程中加载了资源，请在打包后的目录里相对exe文件进行补充，框架不支持VS的Resources
+4. 打包方式: 将VS切换到Release分支，在项目Release设置内，代码生成选择MT，即可脱离C++和easyx环境运行,如果在过程中加载了资源，请在打包后的目录里相对exe文件进行补充，框架不支持VS的Resources
 
 # 功能
 1.现成的GUI组件
