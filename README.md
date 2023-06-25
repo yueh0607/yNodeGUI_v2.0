@@ -5,17 +5,73 @@
 所以，大家一定要注重复用！！！  很快乐。
 
 这个改一改就是你的..啊不是，我是说基于框架进行开发(滑稽)
+
+# yNodeGUI v1.0（建议看我的2.0版本，那个修复了不少bug并且更简单支持更完善，而且也有sample，[点这里跳转](x)）
+1.定位：针对于简易C++管理系统开发，提供简单的基于easyx的GUI固定渲染和简单的无限层级菜单解决方案
+
+2.使用基础：有一定面向对象基础和IMGUI使用经验，或者easyx的使用经验
+
+3.使用方式:仅在VisualStudio导入yNodeGUIFrameowrk目录下的文件到项目内，并在easyx官网（https://easyx.cn/  ）.安装easyx(仅支持VisualStudio)，在项目设置里设置多字符集的编码！！！
+
+4.打包方式: 将VS切换到Release分支，在项目Release设置内，代码生成选择MT，即可脱离C++和easyx环境运行,如果在过程中加载了资源，请在打包后的目录里相对exe文件进行补充，框架不支持VS的Resources
+
+# 功能
+1.现成的GUI组件
+包含按钮，缩放框，网格，文本，图片等多种组件
+
+2.极低学习成本
+框架内实现了NodeGUI，无限层级菜单管理方便，同时简单的机制容易上手
+
+4.高效的菜单管理器
+将菜单抽象为N叉树，能高效处置多级深度菜单，自动实现全流程的固定形式菜单渲染
+# API使用
+0.引入头文件
+```c++
+#include"yNodeGUI.h"
+```
+1.Main函数内创建图形界面
+```c++
+	//创建画布
+	Canvas canvas = { 1000,600,90, RGB(255,255,255) }; 
+	//展示GUI并阻塞程序
+	canvas.Show(OnStart, OnUpdate, OnGUI,true); 
+```
+2.在Start内定义菜单节点
+```c++
+  	//创建根节点和节点菜单管理器
+	Node* root = new Node();
+	menu = new Menu(root, &canvas);
+
+	//主菜单节点
+	Node* m1 = new Node(root, "课程信息录入");
+	Node* m2 = new Node(root, "课程信息浏览", browsing, true, fresh);
+	Node* m3 = new Node(root, "课程信息查询", queryshow, true, fresh_query);
+	Node* m4 = new Node(root, "学生自由选课");
+	Node* m6 = new Node(root, "安全退出系统", exit_system, true);
+
+	//主菜单选项1  一级菜单节点
+	Node* x1 = new Node(m1, "录入课程信息", input, true);
+	Node* x2 = new Node(m1, "修改课程信息", set_course, true);
+	Node* x3 = new Node(m1, "删除课程信息", del_course, true);
+	Node* x4 = new Node(m1, "返回", last_menu, true);
+
+	//主菜单选项4  一级菜单节点
+	Node* n1 = new Node(m4, "自由选课", choose, true);
+	Node* n2 = new Node(m4, "已选课程查看", view_selected, true, fresh_selected);
+	Node* n3 = new Node(m4, "返回", last_menu, true);
+  ```
+3. 注册和渲染 /这些内容可以在不同的位置实现，具体请看Core.cpp文件内的示例
+```c++
+	//注册重绘机制
+	//注册控件
+	canvas.Env(0).Register(id, btn);
+	//绘制控件
+	canvas.Env(0).Draw(id);
+  ```
+
 # demo展示 图书馆管理系统
-简单易懂的界面和菜单定义方式
 
-![image](https://github.com/yueh0607/yNodeGUI_v2.0/assets/102401735/e869c2b7-2b47-400d-9aa9-a27e99e3f52b)
+demo仓库(点击了解更多信息)：[https://github.com/yueh0607/yNodeGUI_Sample_](https://github.com/yueh0607/yNodeGUI_v2.0_Sample)
 
-![image](https://github.com/yueh0607/yNodeGUI_v2.0/assets/102401735/8374cc78-487b-4299-a7e9-c79c688fb0bd)
-![image](https://github.com/yueh0607/yNodeGUI_v2.0/assets/102401735/2f6a063d-f973-4894-b29e-96ed80b82418)
-![image](https://github.com/yueh0607/yNodeGUI_v2.0/assets/102401735/3b6ad066-23f7-4ad1-b27d-d4fd2632cd3f)
-![image](https://github.com/yueh0607/yNodeGUI_v2.0/assets/102401735/2d201b47-f6de-4e00-baad-007e05a1769e)
+![image](https://github.com/yueh0607/yNodeGUI_v2.0/assets/102401735/b0065635-af57-4f58-a19b-8b8e358472f9)
 
-优雅的编程水....完成期末大作业
-![image](https://github.com/yueh0607/yNodeGUI_v2.0/assets/102401735/6303e0cf-2814-4f2f-8587-7f495bf0ef77)
-![image](https://github.com/yueh0607/yNodeGUI_v2.0/assets/102401735/afaf8962-90c9-4a3d-90b7-fed98a7c5ec9)
-![image](https://github.com/yueh0607/yNodeGUI_v2.0/assets/102401735/2442025a-3e5f-48fd-9f35-f3d99926a2b3)
